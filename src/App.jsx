@@ -10,6 +10,16 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('')
   const [showNotification, setShowNotification] = useState(false)
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user')
+    const storedToken = localStorage.getItem('token')
+
+    if (storedUser && storedToken) {
+      setCurrentUser(JSON.parse(storedUser))
+      setToken(storedToken)
+    }
+  }, [])
+
   const handleLogin = async (username, password) => {
     try {
       const response = await fetch('http://localhost:5000/api/login', {
@@ -78,9 +88,11 @@ function App() {
 
       <button
         onClick={handleLogout}
-        className='
-          fixed top-8 right-8 bg-gray-100 text-cyan-950 
-          px-4 py-2 rounded hover:bg-white focus:outline-none'
+        className="
+          fixed top-8 right-8 bg-gray-200 text-cyan-950 
+          hover:bg-white focus:ring-2 focus:outline-none 
+          focus:ring-blue-300 font-medium rounded-lg 
+          text-md px-5 py-2.5 text-center"
       >
         Cerrar sesión
       </button>

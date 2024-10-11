@@ -3,7 +3,7 @@ import EditIcon from './icons/EditIcon'
 import AddForm from './AddForm'
 import { useEffect, useState } from 'react'
 
-const TableAdmin = ({ token }) => {
+const TableAdmin = ({ token, handleNotification }) => {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
@@ -32,7 +32,9 @@ const TableAdmin = ({ token }) => {
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
 
-            <AddForm token={token} fetchUsers={fetchUsers} />
+            <AddForm 
+                handleNotification={handleNotification}
+                token={token} fetchUsers={fetchUsers} />
 
             <div className="pb-4 pt-4">
                 <label htmlFor="table-search" className="sr-only">Search</label>
@@ -55,7 +57,7 @@ const TableAdmin = ({ token }) => {
                 <thead className="text-xs text-gray-200 uppercase bg-gray-950">
                     <tr>
                         <th scope="col" className="px-6 py-3">
-                            Nombre
+                            Usuario
                         </th>
                         <th scope="col" className="px-6 py-3">
                             Ingreso
